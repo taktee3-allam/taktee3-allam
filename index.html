@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Splitter</title>
+    <style>
+        .sentence {
+            padding: 5px;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        /* Define a few colors to alternate */
+        .color1 { color: #ff6347; }  /* Tomato */
+        .color2 { color: #4682b4; }  /* SteelBlue */
+        .color3 { color: #32cd32; }  /* LimeGreen */
+        .color4 { color: #ffa500; }  /* Orange */
+    </style>
+</head>
+<body>
+
+    <h1>Text Semantic Splitter</h1>
+    <textarea id="inputText" rows="10" cols="80" placeholder="Enter your text here..."></textarea>
+    <br><br>
+    <button onclick="submitText()">Submit</button>
+
+    <h2>Grouped Sentences:</h2>
+    <div id="result"></div>
+
+    <script>
+        // Function to handle the button click and interact with the API
+        function submitText() {
+            const text = document.getElementById("inputText").value;
+            const apiUrl = "http://127.0.0.1:5000/api/split_text";  // Replace with your ngrok URL
+            
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: text,
+                    threshold: 0.75  // You can adjust the threshold value
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = "";  // Clear previous results
+                const sentences = data.grouped_sentences;
+                let colorClass = 1;
+
+                sentences.forEach(sentence => {
+                    const span = document.createElement("span");
+                    span.textContent = sentence;
+                    span.className = `sentence color${colorClass}`;
+                    resultDiv.appendChild(span);
+                    resultDiv.appendChild(document.createElement("br"));
+                    colorClass = (colorClass % 4) + 1;  // Cycle through color classes
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>
