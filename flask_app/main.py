@@ -1,11 +1,8 @@
-import getpass
-import os
 import threading
+
 from flask import Flask, request, jsonify,render_template_string
-# from pyngrok import ngrok, conf
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-import matplotlib.pyplot as plt
 
 # Load the pre-trained model
 model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
@@ -104,7 +101,7 @@ def index():
                 const apiUrl = "/api/split_text";
                 const resultDiv = document.getElementById("result");
                 const loadingDiv = document.getElementById("loading");
-                
+
                 // Show loading indicator
                 loadingDiv.style.display = 'block';
 
