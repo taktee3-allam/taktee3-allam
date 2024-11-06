@@ -9,7 +9,7 @@
 	async function submit() {
 		loading = true;
 		try {
-			const res = await fetch('/api/split_text', {
+			const res = await fetch('/api/split-text', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -18,7 +18,7 @@
 				})
 			});
 			const data = await res.json();
-			groupedSentences = data.grouped_sentences;
+			groupedSentences = data.groupedSentences;
 		} catch (e) {
 			alert('An error occured: ' + e);
 		} finally {
