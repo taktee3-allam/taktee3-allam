@@ -1,6 +1,7 @@
 import threading
 
 from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -15,6 +16,8 @@ app = Flask(__name__,
             static_url_path='/',
             static_folder='../frontend/build',
             )
+
+CORS(app)
 
 # Open a ngrok tunnel to the HTTP server
 # public_url = ngrok.connect(5000).public_url
@@ -45,6 +48,7 @@ def split_text_by_semantic_similarity(text, threshold):
 
     grouped_sentences.append(' '.join(current_group))
     return grouped_sentences
+
 @app.route("/")
 def index():
     return send_file('../frontend/build/index.html')
