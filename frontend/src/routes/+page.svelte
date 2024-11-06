@@ -15,7 +15,7 @@
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					text: inputText,
-					threshold
+					threshold: threshold / 100
 				})
 			});
 			const data = await res.json();
