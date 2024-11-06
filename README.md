@@ -6,7 +6,5 @@ Project to show how taktee3 algorithm can use RAG to enhance the potential of al
 ```sh
 cd frontend
 npm install
-npm run build
-cd ../flask_app
-python main.py
+npm run dev
 ```
