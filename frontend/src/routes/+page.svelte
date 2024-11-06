@@ -55,30 +55,26 @@
 	}
 </script>
 
-<Heading tag="h1" class="p-4">Text semantic splitter</Heading>
-<hr />
-<main class="flex flex-row justify-evenly gap-4 p-4">
-	<section class="flex-1">
-		<Label class="mb-2 mt-4 text-xl">Enter the text to be semantically split</Label>
-		<Textarea placeholder="Text goes here..." rows={8} bind:value={inputText} disabled={loading}>
-			<div slot="footer" class="flex items-center justify-between">
-				<div class="w-44">
-					<Label>Threshold: {threshold}%</Label>
-					<Range min={0} max={100} step={1} bind:value={threshold} disabled={loading} />
-				</div>
-				<Button onclick={submit} disabled={loading}>Submit</Button>
+<section class="flex-1">
+	<Label class="mb-2 mt-4 text-xl">Enter the text to be semantically split</Label>
+	<Textarea placeholder="Text goes here..." rows={8} bind:value={inputText} disabled={loading}>
+		<div slot="footer" class="flex items-center justify-between">
+			<div class="w-44">
+				<Label>Threshold: {threshold}%</Label>
+				<Range min={0} max={100} step={1} bind:value={threshold} disabled={loading} />
 			</div>
-		</Textarea>
-	</section>
-	<section class="flex-1">
-		<Heading tag="h2">Grouped sentences</Heading>
-		<List class="p-2">
-			{#each groupedSentences as { sentence }}
-				<Li style="color: {generateRandomColor()}">{sentence}</Li>
-			{/each}
-		</List>
-		{#if groupedSentences.length > 0}
-			<Button onclick={addToDB} disabled={loading}>Add to Database</Button>
-		{/if}
-	</section>
-</main>
+			<Button onclick={submit} disabled={loading}>Submit</Button>
+		</div>
+	</Textarea>
+</section>
+<section class="flex-1">
+	<Heading tag="h2">Grouped sentences</Heading>
+	<List class="p-2">
+		{#each groupedSentences as { sentence }}
+			<Li style="color: {generateRandomColor()}">{sentence}</Li>
+		{/each}
+	</List>
+	{#if groupedSentences.length > 0}
+		<Button onclick={addToDB} disabled={loading}>Add to Database</Button>
+	{/if}
+</section>
