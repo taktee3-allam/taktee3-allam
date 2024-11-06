@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Heading, Button, Textarea, Label, Range, List, Li } from 'flowbite-svelte';
+	import { generateRandomColor } from '$lib/colors';
 
 	let inputText = $state('');
 	let threshold = $state(30);
@@ -9,7 +10,7 @@
 	async function submit() {
 		loading = true;
 		try {
-			const res = await fetch('/api/split_text', {
+			const res = await fetch('http://127.0.0.1:5000/api/split_text', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -44,9 +45,9 @@
 	</section>
 	<section class="flex-1">
 		<Heading tag="h2">Grouped sentences</Heading>
-		<List class="p-2" list="decimal">
+		<List class="p-2">
 			{#each groupedSentences as sentence}
-				<Li>{sentence}</Li>
+				<Li style="color: {generateRandomColor()}">{sentence}</Li>
 			{/each}
 		</List>
 	</section>
