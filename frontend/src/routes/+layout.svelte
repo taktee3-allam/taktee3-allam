@@ -1,6 +1,18 @@
 <script lang="ts">
+	import { A, Heading } from 'flowbite-svelte';
 	import '../app.css';
 	let { children } = $props();
 </script>
 
-{@render children()}
+<div class="flex items-center justify-between p-4">
+	<A href="/" class="text-lg">
+		<Heading tag="h1" class="w-fit">Text semantic splitter</Heading>
+	</A>
+	<div>
+		<A href="/sentences" class="mr-4">View Sentences</A>
+	</div>
+</div>
+<hr />
+<main class="p-4">
+	{@render children()}
+</main>
