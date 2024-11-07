@@ -44,7 +44,7 @@
 				throw 'An error occured: ' + res.error.message;
 			}
 
-			alert('Sentences added to database successfully');
+			alert('تم إضافة الجمل بنجاح');
 			inputText = '';
 			groupedSentences = [];
 		} catch (e) {
@@ -57,26 +57,26 @@
 
 <div class="flex flex-row justify-evenly gap-4">
 	<section class="flex-1">
-		<Label class="mb-2 mt-4 text-xl">Enter the text to be semantically split</Label>
-		<Textarea placeholder="Text goes here..." rows={8} bind:value={inputText} disabled={loading}>
+		<Label class="mb-2 mt-4 text-xl">أدخل الكلام للتقطيع</Label>
+		<Textarea placeholder="اكتب هنا..." rows={8} bind:value={inputText} disabled={loading}>
 			<div slot="footer" class="flex items-center justify-between">
 				<div class="w-44">
-					<Label>Threshold: {threshold}%</Label>
+					<Label>نسبة التشابه: {threshold}%</Label>
 					<Range min={0} max={100} step={1} bind:value={threshold} disabled={loading} />
 				</div>
-				<Button onclick={submit} disabled={loading}>Submit</Button>
+				<Button onclick={submit} disabled={loading}>قطّع</Button>
 			</div>
 		</Textarea>
 	</section>
 	<section class="flex-1">
-		<Heading tag="h2">Grouped sentences</Heading>
+		<Heading tag="h2">الجمل المقطعة</Heading>
 		<List class="p-2">
 			{#each groupedSentences as { sentence }}
 				<Li style="color: {generateRandomColor()}">{sentence}</Li>
 			{/each}
 		</List>
 		{#if groupedSentences.length > 0}
-			<Button onclick={addToDB} disabled={loading}>Add to Database</Button>
+			<Button onclick={addToDB} disabled={loading}>سجلها في قاعدة البيانات</Button>
 		{/if}
 	</section>
 </div>

@@ -31,11 +31,11 @@
 	});
 </script>
 
-<Input placeholder="Search" bind:value={search} class="w-full" />
+<Input placeholder="ابحث في الجمل" bind:value={search} class="w-full" />
 
 <Table striped hoverable>
 	<TableHead>
-		<TableHeadCell class="inline-block w-8/12">Sentence</TableHeadCell>
+		<TableHeadCell class="inline-block w-8/12">الجملة</TableHeadCell>
 		<TableHeadCell class="inline-block w-3/12">Embedding</TableHeadCell>
 	</TableHead>
 	<TableBody tableBodyClass="inline-block max-w-[100vw]">
