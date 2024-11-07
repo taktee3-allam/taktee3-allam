@@ -6,7 +6,7 @@
 
 <div class="flex items-center justify-between p-4">
 	<A href="/" class="text-lg">
-		<Heading tag="h1" class="w-fit">تقطيع الجمل حسب المعنى</Heading>
+		<Heading tag="h1" class="w-fit">تقطيع الجمل حسب المعنى - تقطيع</Heading>
 	</A>
 	<div>
 		<A href="/sentences" class="mr-4">الجمل المخزنة</A>

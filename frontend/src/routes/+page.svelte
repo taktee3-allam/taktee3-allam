@@ -57,7 +57,7 @@
 
 <div class="flex flex-row justify-evenly gap-4">
 	<section class="flex-1">
-		<Label class="mb-2 mt-4 text-xl">أدخل الكلام للتقطيع</Label>
+		<Label class="mb-2 mt-4 text-xl">أدخل النص للتقطيع</Label>
 		<Textarea placeholder="اكتب هنا..." rows={8} bind:value={inputText} disabled={loading}>
 			<div slot="footer" class="flex items-center justify-between">
 				<div class="w-44">
@@ -69,7 +69,7 @@
 		</Textarea>
 	</section>
 	<section class="flex-1">
-		<Heading tag="h2">الجمل المقطعة</Heading>
+		<Heading tag="h2">النص المقطع</Heading>
 		<List class="p-2">
 			{#each groupedSentences as { sentence }}
 				<Li style="color: {generateRandomColor()}">{sentence}</Li>
