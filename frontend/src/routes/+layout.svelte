@@ -6,10 +6,10 @@
 
 <div class="flex items-center justify-between p-4">
 	<A href="/" class="text-lg">
-		<Heading tag="h1" class="w-fit">Text semantic splitter</Heading>
+		<Heading tag="h1" class="w-fit">تقطيع الجمل حسب المعنى</Heading>
 	</A>
 	<div>
-		<A href="/sentences" class="mr-4">View Sentences</A>
+		<A href="/sentences" class="mr-4">الجمل المخزنة</A>
 	</div>
 </div>
 <hr />
