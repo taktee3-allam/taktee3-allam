@@ -71,3 +71,44 @@ def split_text():
 
 # Start the Flask server in a new thread
 threading.Thread(target=app.run, kwargs={"use_reloader": False}).start()
+
+
+
+
+# import os
+# import getpass
+# from ibm_watsonx_ai.foundation_models import Model
+
+
+# def get_credentials():
+# 	return {
+# 		"url" : "https://eu-de.ml.cloud.ibm.com",
+# 		"apikey" : "sUXUX4iNrOIeA3CVar3LLNqMnxMMkLht4lkJ7SM4Jare"
+# 	}
+# model_id = "sdaia/allam-1-13b-instruct"
+# parameters = {
+#     "decoding_method": "greedy",
+#     "max_new_tokens": 900,
+#     "repetition_penalty": 1
+# }
+# project_id ="3f3e8a02-628e-4736-920e-130b2b284414"
+# space_id = "wx"
+
+# model = Model(
+# 	model_id = model_id,
+# 	params = parameters,
+# 	credentials = get_credentials(),
+# 	project_id = project_id
+# 	)
+
+# prompt_input = ""
+# question='''
+# علام..اكتب لي شعراً مشابه ل قصيدة تَغَيَّرَتِ المَوَدَّةُ وَالإِخاءُ
+# وَقَلَّ الصِدقُ ..
+
+# '''
+
+# formattedQuestion = f"""<s> [INST] {question} [/INST]"""
+# prompt = f"""{prompt_input}{formattedQuestion}"""
+# generated_response = model.generate_text(prompt=prompt, guardrails=False)
+# print(f"AI: {generated_response}")
