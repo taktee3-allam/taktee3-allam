@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { sendPrompt } from '$lib/api';
 	import { Button, Input, Toggle } from 'flowbite-svelte';
 
 	type Message = { sender: 'user' | 'chatbot'; text: string };
@@ -16,24 +17,9 @@
 		messages.push({ sender: 'user', text: message });
 
 		try {
-			const response = await fetch('http://127.0.0.1:5000/api/prompt', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					prompt: message,
-					useTaqtee3
-				})
-			});
-
-			if (!response.ok) {
-				throw await response.text();
-			}
-
-			const data = await response.json();
+			const response = await sendPrompt(message, useTaqtee3);
 			message = '';
-			messages.push({ sender: 'chatbot', text: data.response });
+			messages.push({ sender: 'chatbot', text: response });
 		} catch (error) {
 			alert('Error: ' + error);
 		} finally {

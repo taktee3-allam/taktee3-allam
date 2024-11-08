@@ -146,6 +146,18 @@ export type Database = {
             }
             Returns: unknown
           }
+      match_sentences: {
+        Args: {
+          query_embedding: string
+          match_threshold: number
+          match_count: number
+        }
+        Returns: {
+          id: number
+          sentence: string
+          similarity: number
+        }[]
+      }
       sparsevec_out: {
         Args: {
           "": unknown
