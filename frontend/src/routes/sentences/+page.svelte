@@ -14,6 +14,7 @@
 	import { TrashBinSolid } from 'flowbite-svelte-icons';
 	import { supabase } from '$lib/supabase';
 	import { onMount } from 'svelte';
+	import { getEmbedding } from '$lib/api';
 
 	type Sentence = { id: number; sentence: string; similarity: number };
 	let sentences = $state<Sentence[]>([]);
@@ -22,18 +23,6 @@
 	let loading = $state(false);
 
 	onMount(search);
-
-	async function getEmbedding(text: string): Promise<number[]> {
-		const response = await fetch('http://127.0.0.1:5000/api/embed', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ text })
-		});
-		const { embedding } = await response.json();
-		return embedding;
-	}
 
 	async function getAllSentences() {
 		const { data: sentences } = await supabase.from('sentences').select('*');

@@ -2,8 +2,7 @@
 	import { Heading, Button, Textarea, Label, Range, List, Li } from 'flowbite-svelte';
 	import { generateRandomColor } from '$lib/colors';
 	import { supabase } from '$lib/supabase';
-
-	type Sentence = { sentence: string; embedding: number[] };
+	import { splitText, type Sentence } from '$lib/api';
 
 	let inputText = $state('');
 	let threshold = $state(30);
@@ -13,17 +12,7 @@
 	async function submit() {
 		loading = true;
 		try {
-			type GroupSentences = { grouped_sentences: Sentence[] };
-			const res = await fetch('http://127.0.0.1:5000/api/split_text', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					text: inputText,
-					threshold: threshold / 100
-				})
-			});
-			const data: GroupSentences = await res.json();
-			groupedSentences = data.grouped_sentences;
+			groupedSentences = await splitText(inputText, threshold);
 		} catch (e) {
 			alert('An error occured: ' + e);
 		} finally {
