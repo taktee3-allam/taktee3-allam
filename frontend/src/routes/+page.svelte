@@ -60,7 +60,7 @@
 	<section class="flex-1">
 		<Heading tag="h2">النص المقطع</Heading>
 		<List class="p-2">
-			{#each groupedSentences as { sentence }}
+			{#each groupedSentences as [sentence]}
 				<Li style="color: {generateRandomColor()}">{sentence}</Li>
 			{/each}
 		</List>

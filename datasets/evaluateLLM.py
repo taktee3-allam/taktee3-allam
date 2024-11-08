@@ -40,7 +40,7 @@ def initialize_ibm_watsonx_model():
     return model
 
 
-def evaluate_ibm_llm(model, csv_file, max_samples=1000):
+def evaluate_ibm_llm(model, csv_file, max_samples=1500):
     # Load data from the CSV file
     data = pd.read_csv(csv_file)
 

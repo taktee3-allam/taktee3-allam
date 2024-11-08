@@ -48,6 +48,8 @@ def split_text_by_semantic_similarity(text, threshold):
             current_group.append(sentences[i])
 
     grouped_sentences.append(' '.join(current_group))
+    # print(grouped_sentences)
+    # print([(sentence, model.encode(sentence).tolist()) for sentence in grouped_sentences])
     return [(sentence, model.encode(sentence).tolist()) for sentence in grouped_sentences]
 
 @app.route("/")
