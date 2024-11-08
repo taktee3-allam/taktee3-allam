@@ -31,26 +31,23 @@ CORS(app)
 def calculate_cosine_similarity(embedding1, embedding2):
     return cosine_similarity([embedding1], [embedding2])[0][0]
 
-def embeddings_average(embeddings: list[list[float]]) -> list[float]:
-    return [float(sum(col) / len(col)) for col in zip(*embeddings)]
-
 # Function to split text by semantic similarity
 def split_text_by_semantic_similarity(text, threshold):
     sentences = text.split('.')
     embeddings = model.encode(sentences)
 
     grouped_sentences = []
-    current_group = [(sentences[0], embeddings[0])]
+    current_group = [sentences[0]]
 
     for i in range(1, len(sentences)):
         sim = calculate_cosine_similarity(embeddings[i-1], embeddings[i])
         if sim < threshold:
-            grouped_sentences.append({'sentence': ' '.join(group[0] for group in current_group), 'embedding': embeddings_average([group[1] for group in current_group])})
-            current_group = [(sentences[i], embeddings[i])]
+            grouped_sentences.append(' '.join(current_group))
+            current_group = [sentences[i]]
         else:
-            current_group.append((sentences[i], embeddings[i]))
+            current_group.append(sentences[i])
 
-    grouped_sentences.append({'sentence': ' '.join(group[0] for group in current_group), 'embedding': embeddings_average([group[1] for group in current_group])})
+    grouped_sentences.append(' '.join(current_group))
     return grouped_sentences
 
 @app.route("/")
