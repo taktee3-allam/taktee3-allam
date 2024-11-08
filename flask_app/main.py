@@ -79,7 +79,7 @@ model_parameters = {
     "max_new_tokens": 900,
     "repetition_penalty": 1
 }
-model = Model(
+ibm_model = Model(
     project_id = "3f3e8a02-628e-4736-920e-130b2b284414",
     model_id = "sdaia/allam-1-13b-instruct",
     params = model_parameters,
@@ -96,7 +96,7 @@ def prompt_ibm():
         # TODO: fill actual addition to the prompt
         prompt = f"Answer this prompt: {prompt}"
 
-    generated_response = model.generate_text(prompt=prompt, guardrails=False)
+    generated_response = ibm_model.generate_text(prompt=prompt, guardrails=False)
     return jsonify({"response": generated_response})
 
 # Start the Flask server in a new thread
