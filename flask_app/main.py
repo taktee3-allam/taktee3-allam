@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+from ibm_watsonx_ai.foundation_models import Model
 
 # Load the pre-trained model
 model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
@@ -69,46 +70,34 @@ def split_text():
     grouped_sentences = split_text_by_semantic_similarity(text, threshold)
     return jsonify({"grouped_sentences": grouped_sentences})
 
+ibm_creds = {
+    "url" : "https://eu-de.ml.cloud.ibm.com",
+    "apikey" : "sUXUX4iNrOIeA3CVar3LLNqMnxMMkLht4lkJ7SM4Jare"
+}
+model_parameters = {
+    "decoding_method": "greedy",
+    "max_new_tokens": 900,
+    "repetition_penalty": 1
+}
+model = Model(
+    project_id = "3f3e8a02-628e-4736-920e-130b2b284414",
+    model_id = "sdaia/allam-1-13b-instruct",
+    params = model_parameters,
+    credentials = ibm_creds,
+)
+
+@app.route("/api/prompt", methods=["POST"])
+def prompt_ibm():
+    data = request.get_json()
+    use_taqtee3 = data.get("useTaqtee3", False)
+    prompt = data.get("prompt", "")
+
+    if use_taqtee3:
+        # TODO: fill actual addition to the prompt
+        prompt = f"Answer this prompt: {prompt}"
+
+    generated_response = model.generate_text(prompt=prompt, guardrails=False)
+    return jsonify({"response": generated_response})
+
 # Start the Flask server in a new thread
 threading.Thread(target=app.run, kwargs={"use_reloader": False}).start()
-
-
-
-
-# import os
-# import getpass
-# from ibm_watsonx_ai.foundation_models import Model
-
-
-# def get_credentials():
-# 	return {
-# 		"url" : "https://eu-de.ml.cloud.ibm.com",
-# 		"apikey" : "sUXUX4iNrOIeA3CVar3LLNqMnxMMkLht4lkJ7SM4Jare"
-# 	}
-# model_id = "sdaia/allam-1-13b-instruct"
-# parameters = {
-#     "decoding_method": "greedy",
-#     "max_new_tokens": 900,
-#     "repetition_penalty": 1
-# }
-# project_id ="3f3e8a02-628e-4736-920e-130b2b284414"
-# space_id = "wx"
-
-# model = Model(
-# 	model_id = model_id,
-# 	params = parameters,
-# 	credentials = get_credentials(),
-# 	project_id = project_id
-# 	)
-
-# prompt_input = ""
-# question='''
-# علام..اكتب لي شعراً مشابه ل قصيدة تَغَيَّرَتِ المَوَدَّةُ وَالإِخاءُ
-# وَقَلَّ الصِدقُ ..
-
-# '''
-
-# formattedQuestion = f"""<s> [INST] {question} [/INST]"""
-# prompt = f"""{prompt_input}{formattedQuestion}"""
-# generated_response = model.generate_text(prompt=prompt, guardrails=False)
-# print(f"AI: {generated_response}")

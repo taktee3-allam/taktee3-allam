@@ -10,6 +10,7 @@
 	</A>
 	<div>
 		<A href="/sentences" class="mr-4">الجمل المخزنة</A>
+		<A href="/chat">المحادثة</A>
 	</div>
 </div>
 <hr />
