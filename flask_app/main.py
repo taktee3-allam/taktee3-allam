@@ -99,5 +99,16 @@ def prompt_ibm():
     generated_response = ibm_model.generate_text(prompt=prompt, guardrails=False)
     return jsonify({"response": generated_response})
 
+@app.route("/api/embed", methods=["POST"])
+def get_embedding():
+    data = request.get_json()
+    text = data.get("text", "")
+
+    if not text:
+        return jsonify({"error": "No text provided"}), 400
+
+    embedding = model.encode(text)
+    return jsonify({"embedding": embedding.tolist()})
+
 # Start the Flask server in a new thread
 threading.Thread(target=app.run, kwargs={"use_reloader": False}).start()
