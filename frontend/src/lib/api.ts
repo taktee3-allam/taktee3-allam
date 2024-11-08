@@ -32,7 +32,7 @@ export async function sendPrompt(message: string, useTaqtee3: boolean = false): 
 	return data.response;
 }
 
-export type Sentence = { sentence: string; embedding: number[] };
+export type Sentence = [sentence: string,embedding: number[] ];
 
 /**
  *

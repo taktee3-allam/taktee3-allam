@@ -24,7 +24,7 @@
 		loading = true;
 		try {
 			const res = await supabase.from('sentences').insert(
-				groupedSentences.map(({ sentence, embedding }) => ({
+				groupedSentences.map(([ sentence, embedding ]) => ({
 					sentence,
 					embedding: JSON.stringify(embedding)
 				}))
