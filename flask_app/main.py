@@ -89,8 +89,10 @@ ibm_model = Model(
 def prompt_ibm():
     data = request.get_json()
     use_taqtee3 = data.get("useTaqtee3", False)
-    prompt = data.get("prompt", "")
-
+    question = data.get("prompt", "")
+    prompt_input=""
+    formattedQuestion = f"""<s> [INST] {question} [/INST]"""
+    prompt = f"""{prompt_input}{formattedQuestion}"""
     if use_taqtee3:
         # TODO: fill actual addition to the prompt
         prompt = f"Answer this prompt: {prompt}"
