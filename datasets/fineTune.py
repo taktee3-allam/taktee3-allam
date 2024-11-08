@@ -84,14 +84,13 @@ with open("poems_data1.csv", "w", newline="", encoding="utf-8") as csvfile:
                 # Extract all <h3> elements from the main content div
                 main_div = poem_soup.find('div', {"id": 'poem_content'})
                 if main_div:
-                    h3_elements = [h3.get_text(strip=True) for h3 in main_div.find_all("h3")]
+                    h3_elements = [h3.get_text(strip=False) for h3 in main_div.find_all("h3")]
                     for i in range(0, len(h3_elements) - 1, 2):  # Step by 2
                         h3_text_current = h3_elements[i]
                         h3_text_next = h3_elements[i + 1]
                         
                         # Update question to include both h3_text_current and h3_text_next
-                        question = f'''ما هو البحر الشعري لهذا البيت
-                        {h3_text_current} - {h3_text_next}?'''
+                        question = f'''ما هو البحر الشعري لهذا البيت {h3_text_current} - {h3_text_next}?'''
                         answer=traget_sea
                         conversation = {
                         "messages": [
@@ -100,7 +99,7 @@ with open("poems_data1.csv", "w", newline="", encoding="utf-8") as csvfile:
                             {"role": "assistant", "content":answer}
                             ]
                         }
-                        print(question)
+                        # print(question)
                         conversation_list.append(conversation)
                         # choices = {
                         #     "text": [
@@ -143,11 +142,13 @@ with open("poems_data1.csv", "w", newline="", encoding="utf-8") as csvfile:
                 # Wait to avoid overwhelming the server
                 time.sleep(1)
 
-print("Scraping complete. Data saved to poems_data.csv")
-with open("poems_data_1.json", 'w') as f:
-    for conversation in conversation_list:
-        json.dump(conversation, f)
-        f.write('\n')
+print("Scraping complete. Data saved to poems_data_1.csv")
+with open("poems_data_1.json", "w", encoding="utf-8") as f:
+    json.dump(conversation_list, f, ensure_ascii=False, indent=4)
+# with open("poems_data_1.json", 'w') as f:
+#     for conversation in conversation_list:
+#         json.dump(conversation, f)
+#         f.write('\n')
 # import pandas as pd
 # import ast
 # import json
