@@ -11,7 +11,7 @@ Project demonstrating how the Taktee3 algorithm leverages Retrieval-Augmented Ge
 - **FrontEnd**: [https://taktee3-allam.vercel.app](https://taktee3-allam.vercel.app)
 - **Backend and Scripts**:
   - **Evaluation & Benchmarking Script**: [evaluateLLM.py](https://github.com/enghamzasalem/taktee3-allam/blob/main/datasets/evaluateLLM.py)
-  - **Dataset for Fine-tuning**: [poems_data_1.json](https://github.com/enghamzasalem/taktee3-allam/blob/main/datasets/poems_data_1.json)
+  - **Dataset for Fine-tuning**: [poems_data_1.json](https://github.com/enghamzasalem/taktee3-allam/blob/main/datasets/poems_data_1_ready.json)
   - **Dataset for Benchmarking**: [poems_data.csv](https://github.com/enghamzasalem/taktee3-allam/blob/main/datasets/poems_data.csv)
 
 ## How to Run
@@ -51,9 +51,9 @@ python main.py
 
 ## Sample Data Format
 
-Below is an example of the data format used for fine-tuning (`poems_data_1.json`) and benchmarking (`poems_data.csv`):
+Below is an example of the data format used for fine-tuning (`poems_data_1_ready.json`) and benchmarking (`poems_data.csv`):
 
-### Fine-Tuning Data (`poems_data_1.json`)
+### Fine-Tuning Data (`poems_data_1_ready.json`)
 
 ```json
  {
