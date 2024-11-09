@@ -1,4 +1,4 @@
-Here's a more comprehensive README file that includes additional instructions for running Python scripts, sample data formatting, and an embedded YouTube video.
+Here's the modified README with the updated repository URL:
 
 ---
 
@@ -10,9 +10,9 @@ Project demonstrating how the Taktee3 algorithm leverages Retrieval-Augmented Ge
 
 - **FrontEnd**: [https://taktee3-allam.vercel.app](https://taktee3-allam.vercel.app)
 - **Backend and Scripts**:
-  - **Evaluation & Benchmarking Script**: [evaluateLLM.py](https://github.com/enghamzasalem/taktee3-allam/blob/main/datasets/evaluateLLM.py)
-  - **Dataset for Fine-tuning**: [poems_data_1.json](https://github.com/enghamzasalem/taktee3-allam/blob/main/datasets/poems_data_1_ready.json)
-  - **Dataset for Benchmarking**: [poems_data.csv](https://github.com/enghamzasalem/taktee3-allam/blob/main/datasets/poems_data.csv)
+  - **Evaluation & Benchmarking Script**: [evaluateLLM.py](https://github.com/taktee3-allam/taktee3-allam/blob/main/datasets/evaluateLLM.py)
+  - **Dataset for Fine-tuning**: [poems_data_1.json](https://github.com/taktee3-allam/taktee3-allam/blob/main/datasets/poems_data_1_ready.json)
+  - **Dataset for Benchmarking**: [poems_data.csv](https://github.com/taktee3-allam/taktee3-allam/blob/main/datasets/poems_data.csv)
 
 ## How to Run
 
@@ -92,7 +92,6 @@ Below is an example of the data format used for fine-tuning (`poems_data_1_ready
 
 ### Benchmarking Data (`poems_data.csv`)
 
-
 ```markdown
 ## Sample Data
 
@@ -109,12 +108,10 @@ Below is an example of the data format used for fine-tuning (`poems_data_1_ready
 - For links, use `[text](URL)` to make the `source` URLs clickable.
   
 This table will display neatly on GitHub, giving a clear and accessible format for readers.
+
 ## YouTube Overview
 
 Watch this video to get an overview of the Taktee3-Allam project:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uMyCxF7xnvs?autoplay=1" title="Taktee3-Allam Overview" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 [Or here](https://www.youtube.com/watch?v=Bbkxwg8MUlY) |
----
-
-This updated README includes all elements: clear demo links, step-by-step running instructions, data sample formatting, and an embedded video that will autoplay. 
